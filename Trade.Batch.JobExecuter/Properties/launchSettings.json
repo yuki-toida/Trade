@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Trade.Batch.JobExecuter": {
+      "commandName": "Project",
+      "commandLineArgs": "Trade.Batch.Yahoo,Trade.Batch"
+    }
+  }
+}
