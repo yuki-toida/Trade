@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Trade.UI.Console": {
+      "commandName": "Project"
+    }
+  }
+}
