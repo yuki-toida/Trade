@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Trade.Infra.Contract.Models.Entities;
+using Trade.Infra.Contract.Entities;
 
 namespace Trade.Infra.EF
 {
@@ -13,6 +13,8 @@ namespace Trade.Infra.EF
         public DbSet<YahooVolumeIncreaseRate> YahooVolumeIncreaseRates { get; set; }
         public DbSet<YahooPriceIncreaseRateDate> YahooPriceIncreaseRateDates { get; set; }
         public DbSet<YahooPriceIncreaseRate> YahooPriceIncreaseRates { get; set; }
+        public DbSet<YahooPriceDecreaseRateDate> YahooPriceDecreaseRateDates { get; set; }
+        public DbSet<YahooPriceDecreaseRate> YahooPriceDecreaseRates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +32,14 @@ namespace Trade.Infra.EF
 
             modelBuilder.Entity<YahooPriceIncreaseRate>()
                 .ToTable("YahooPriceIncreaseRate")
+                .HasKey(x => new { x.Date, x.Ranking });
+
+            modelBuilder.Entity<YahooPriceDecreaseRateDate>()
+                .ToTable("YahooPriceDecreaseRateDate")
+                .HasKey(x => new { x.Date });
+
+            modelBuilder.Entity<YahooPriceDecreaseRate>()
+                .ToTable("YahooPriceDecreaseRate")
                 .HasKey(x => new { x.Date, x.Ranking });
         }
     }

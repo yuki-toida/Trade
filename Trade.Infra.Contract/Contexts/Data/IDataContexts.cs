@@ -1,4 +1,4 @@
-﻿using Trade.Infra.Contract.Models.Entities;
+﻿using Trade.Infra.Contract.Entities;
 using Trade.Infra.Contract.Repositories;
 
 namespace Trade.Infra.Contract.Contexts.Data
@@ -9,6 +9,8 @@ namespace Trade.Infra.Contract.Contexts.Data
         IRepository<YahooVolumeIncreaseRate> YahooVolumeIncreaseRateRepository { get; }
         IRepository<YahooPriceIncreaseRateDate> YahooPriceIncreaseRateDateRepository { get; }
         IRepository<YahooPriceIncreaseRate> YahooPriceIncreaseRateRepository { get; }
+        IRepository<YahooPriceDecreaseRateDate> YahooPriceDecreaseRateDateRepository { get; }
+        IRepository<YahooPriceDecreaseRate> YahooPriceDecreaseRateRepository { get; }
 
         int SaveChanges();
     }

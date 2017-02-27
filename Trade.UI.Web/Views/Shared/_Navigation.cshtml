@@ -1,0 +1,15 @@
+﻿@using System.Threading.Tasks
+@model Trade.UI.Web.Models.ViewModels.Shared.NavigationViewModel
+
+<h2>@Model.TargetDate</h2>
+
+<nav aria-label="Page navigation">
+    <ul class="pager">
+        <li class="@(Model.PreviousDate.HasValue ? "" : "disabled")">
+            <a href="@(Model.PreviousUrl)">Previous</a>
+        </li>
+        <li class="@(Model.NextDate.HasValue ? "" : "disabled")">
+            <a href="@(Model.NextUrl)">Next</a>
+        </li>
+    </ul>
+</nav>

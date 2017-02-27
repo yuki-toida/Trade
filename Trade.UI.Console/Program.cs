@@ -31,7 +31,7 @@ namespace Trade.UI.Console
             ConfigurationStrings = new Dictionary<string, string>()
             {
                 {"assembly", "Trade.UI.Batch"},
-                {"class", "Trade.UI.Batch.Scraping.YahooPriceIncreaseRateBatch"},
+                {"class", "Trade.UI.Batch.Scraping.YahooPriceDecreaseRateBatch"},
                 {"arguments", ""}
             };
         }

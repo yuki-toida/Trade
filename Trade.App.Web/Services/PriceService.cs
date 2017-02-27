@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Trade.App.Web.Services.Abstractions;
-using Trade.Domain.Entities;
 using Trade.Domain.Entities.Price;
-using Trade.Domain.Entities.Volume;
 using Trade.Infra.Contract.Contexts.Application;
-using Trade.Infra.Contract.Models.ViewModels.Price;
-using Trade.Infra.Contract.Models.ViewModels.Volume;
 
 namespace Trade.App.Web.Services
 {
@@ -19,16 +15,29 @@ namespace Trade.App.Web.Services
         /// <summary>
         /// 日付を指定して値上がり率情報と登録日付を取得
         /// </summary>
-        public PriceViewModel GetViewModel(DateTime? date)
+        public PriceIncreases GetIncreases(DateTime? date)
         {
-            var dateEntities = AppContext.DataContexts.YahooPriceIncreaseRateDateRepository.GetAll();
-            var priceDate = new PriceDate(dateEntities);
+            var dates = AppContext.DataContexts.YahooPriceIncreaseRateDateRepository.GetAll().Select(x => x.Date).ToArray();
 
-            date = date ?? priceDate.GetMaxDate();
-            var allDate = priceDate.GetAll().OfType<DateTime?>().ToArray();
+            date = date ?? dates.Max(x => x);
+            var allDate = dates.Select(x => x.Date).OfType<DateTime?>().ToArray();
 
             var entities = AppContext.DataContexts.YahooPriceIncreaseRateRepository.FindBy(x => x.Date == date);
-            return new Price(entities).GetViewModel(date.Value, allDate);
+            return new PriceIncreases(entities, date.Value, allDate);
+        }
+
+        /// <summary>
+        /// 日付を指定して値下がり率情報と登録日付を取得
+        /// </summary>
+        public PriceDecreases GetDecreases(DateTime? date)
+        {
+            var dates = AppContext.DataContexts.YahooPriceDecreaseRateDateRepository.GetAll().Select(x => x.Date).ToArray();
+
+            date = date ?? dates.Max(x => x);
+            var allDate = dates.Select(x => x.Date).OfType<DateTime?>().ToArray();
+
+            var entities = AppContext.DataContexts.YahooPriceDecreaseRateRepository.FindBy(x => x.Date == date);
+            return new PriceDecreases(entities, date.Value, allDate);
         }
     }
 }

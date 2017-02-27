@@ -9,6 +9,7 @@ using Trade.Infra.Contract.Contexts.Application;
 using Trade.Infra.EF;
 using Trade.Infra.EF.DataContexts;
 using Trade.Infra.JsonNet;
+using Trade.UI.Web.Core.Options;
 
 namespace Trade.UI.Web
 {
@@ -19,7 +20,7 @@ namespace Trade.UI.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -30,13 +31,17 @@ namespace Trade.UI.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // オプションパターンを有効化する、ControllersコンストラクタにDI注入 http://blog.shibayan.jp/entry/20160529/1464456800
+            services.AddOptions();
+
+            services.Configure<CommonOption>(Configuration.GetSection("Common"));
+
             services.AddMvc();
 
             services.AddLogging();
 
             // Add DbContext
             services.AddDbContext<TradeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            //services.AddDbContext<TradeDbContext>(options => options.UseSqlServer(@"Server=(LocalDB)\Trade;Database=Trade;Trusted_Connection=True"));
 
             // Add ApplicationContext
             services.AddScoped<IApplicationContext, ApplicationContext>(serviceProvider =>
@@ -61,7 +66,7 @@ namespace Trade.UI.Web
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Calendar/Error");
             }
 
             app.UseStaticFiles();
@@ -70,7 +75,7 @@ namespace Trade.UI.Web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Calendar}/{action=Index}/{id?}");
             });
         }
     }

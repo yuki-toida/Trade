@@ -1,0 +1,35 @@
+﻿@using Trade.UI.Web.Models.ViewModels.Price
+@model Trade.UI.Web.Models.ViewModels.Price.PriceIncreaseViewModel
+
+@Html.Partial("_Navigation", Model)
+
+@if (Model.Items.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="text-align: center">No</th>
+                <th style="text-align: center">Code</th>
+                <th style="text-align: center">市場</th>
+                <th>銘柄</th>
+                <th style="text-align: right">株価</th>
+                <th style="text-align: right">値上がり率</th>
+                <th style="text-align: right">出来高</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <th scope="row"  style="text-align: center">@item.Ranking</th>
+                    <td style="text-align: center">@item.Code</td>
+                    <td style="text-align: center">@item.Market</td>
+                    <td>@item.Name</td>
+                    <td style="text-align: right">@item.Price</td>
+                    <td style="text-align: right">@item.IncreaseRate</td>
+                    <td style="text-align: right">@item.Volume</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

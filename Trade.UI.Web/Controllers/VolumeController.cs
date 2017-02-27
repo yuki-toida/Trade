@@ -1,24 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Trade.App.Web.Services;
 using Trade.Infra.Contract.Contexts.Application;
 using Trade.UI.Web.Controllers.Abstractions;
+using Trade.UI.Web.Core.Options;
+using Trade.UI.Web.Models.ViewModels.Volume;
 
 namespace Trade.UI.Web.Controllers
 {
-    public class VolumeController : ApplicationController
+    public class VolumeController : NavigationController
     {
-        public VolumeController(IApplicationContext appContext) : base(appContext)
+        public VolumeController(IApplicationContext appContext, IOptions<CommonOption> optionsAccessor) : base(appContext, optionsAccessor)
         {
         }
 
-        public IActionResult Index(DateTime? date)
+        public IActionResult Increase(DateTime? date)
         {
             var service = new VolumeService(AppContext);
-            var model = service.GetViewModel(date);
+            var volumeIncreases = service.GetIncreases(date);
+
+            var model = new VolumeIncreaseViewModel(volumeIncreases);
+            SetNavigationUrl(model);
+
             return View(model);
         }
     }

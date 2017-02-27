@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Trade.App.Web.Services.Abstractions;
-using Trade.Domain.Entities;
 using Trade.Domain.Entities.Volume;
 using Trade.Infra.Contract.Contexts.Application;
-using Trade.Infra.Contract.Models.ViewModels.Volume;
 
 namespace Trade.App.Web.Services
 {
@@ -17,16 +15,15 @@ namespace Trade.App.Web.Services
         /// <summary>
         /// 日付を指定して出来高情報と登録日付を取得
         /// </summary>
-        public VolumeViewModel GetViewModel(DateTime? date)
+        public VolumeIncreases GetIncreases(DateTime? date)
         {
-            var dateEntities = AppContext.DataContexts.YahooVolumeIncreaseRateDateRepository.GetAll();
-            var volumeDate = new VolumeDate(dateEntities);
+            var dates = AppContext.DataContexts.YahooVolumeIncreaseRateDateRepository.GetAll().Select(x => x.Date).ToArray();
 
-            date = date ?? volumeDate.GetMaxDate();
-            var allDate = volumeDate.GetAll().OfType<DateTime?>().ToArray();
+            date = date ?? dates.Max(x => x);
+            var allDate = dates.Select(x => x.Date).OfType<DateTime?>().ToArray();
 
             var entities = AppContext.DataContexts.YahooVolumeIncreaseRateRepository.FindBy(x => x.Date == date);
-            return new Volume(entities).GetViewModel(date.Value, allDate);
+            return new VolumeIncreases(entities, date.Value, allDate);
         }
     }
 }

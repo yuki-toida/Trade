@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using HtmlAgilityPack;
 using Trade.Infra.Contract.Contexts.Application;
 using Trade.UI.Batch.Scraping.Abstractions;
 using System.Linq;
-using Trade.Infra.Contract.Models.Entities;
+using Trade.Infra.Contract.Entities;
 using Trade.Infra.Contract.Repositories;
 
 namespace Trade.UI.Batch.Scraping
