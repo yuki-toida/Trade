@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +10,7 @@ using Trade.Infra.Contract.Contexts.Application;
 using Trade.Infra.EF;
 using Trade.Infra.EF.DataContexts;
 using Trade.Infra.JsonNet;
-using Trade.UI.Web.Core.Options;
+using Trade.UI.Web.Core.Settings;
 
 namespace Trade.UI.Web
 {
@@ -20,7 +21,7 @@ namespace Trade.UI.Web
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                //.AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
 
             Configuration = builder.Build();
@@ -34,16 +35,27 @@ namespace Trade.UI.Web
             // オプションパターンを有効化する、ControllersコンストラクタにDI注入 http://blog.shibayan.jp/entry/20160529/1464456800
             services.AddOptions();
 
-            services.Configure<CommonOption>(Configuration.GetSection("Common"));
+            // AppSettings
+            services.Configure<AppSettings>(Configuration.GetSection("Common"));
 
-            services.AddMvc();
-
-            services.AddLogging();
-
-            // Add DbContext
+            // DbContext
             services.AddDbContext<TradeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // Add ApplicationContext
+            // Redis
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = Configuration.GetConnectionString("RedisConnection");
+                options.InstanceName = "master";
+            });
+
+            // Session
+            services.AddSession(options =>
+            {
+                options.CookieName = "session";
+                options.IdleTimeout = TimeSpan.FromSeconds(30);
+            });
+
+            // ApplicationContext
             services.AddScoped<IApplicationContext, ApplicationContext>(serviceProvider =>
             {
                 var dbContext = serviceProvider.GetService<TradeDbContext>();
@@ -51,6 +63,10 @@ namespace Trade.UI.Web
                 var serializer = new JsonNetSerializer();
                 return new ApplicationContext(dataContext, serializer);
             });
+
+            services.AddMvc();
+
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +86,8 @@ namespace Trade.UI.Web
             }
 
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

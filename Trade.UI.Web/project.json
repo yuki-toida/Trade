@@ -4,7 +4,6 @@
       "version": "1.0.1",
       "type": "platform"
     },
-    "Microsoft.ApplicationInsights.AspNetCore": "2.0.0",
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.1",
     "Trade.UI.Web.Core": "1.0.0-*",
     "Trade.App.Web": "1.0.0-*",
@@ -26,7 +25,9 @@
     "Microsoft.Extensions.Logging.Console": "1.0.1",
     "Microsoft.Extensions.Logging.Debug": "1.0.1",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.1",
-    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0"
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.1.0",
+    "Microsoft.Extensions.Caching.Redis.Core": "1.0.3",
+    "Microsoft.AspNetCore.Session": "1.0.1"
   },
 
   "tools": {
@@ -37,8 +38,7 @@
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
-        "dotnet5.6",
-        "portable-net45+win8"
+        "dotnet5.6"
       ]
     }
   },

@@ -1,6 +1,6 @@
-﻿namespace Trade.UI.Web.Core.Options
+﻿namespace Trade.UI.Web.Core.Settings
 {
-    public class CommonOption
+    public class AppSettings
     {
         public string StaticServerUrl { get; set; }
         public string GoogleCalendarApiKey { get; set; }

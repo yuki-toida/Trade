@@ -4,14 +4,14 @@ using Microsoft.Extensions.Options;
 using Trade.App.Web.Services;
 using Trade.Infra.Contract.Contexts.Application;
 using Trade.UI.Web.Controllers.Abstractions;
-using Trade.UI.Web.Core.Options;
+using Trade.UI.Web.Core.Settings;
 using Trade.UI.Web.Models.ViewModels.Volume;
 
 namespace Trade.UI.Web.Controllers
 {
     public class VolumeController : NavigationController
     {
-        public VolumeController(IApplicationContext appContext, IOptions<CommonOption> optionsAccessor) : base(appContext, optionsAccessor)
+        public VolumeController(IApplicationContext appContext, IOptions<AppSettings> settings) : base(appContext, settings)
         {
         }
 

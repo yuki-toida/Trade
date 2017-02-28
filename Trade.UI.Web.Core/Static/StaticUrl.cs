@@ -50,7 +50,7 @@
         /// </summary>
         private static string AppendRevision(string url)
         {
-            return $"{url}{(url.Contains("?") ? "&" : "?")}_rev={Revision.Value}";
+            return $"{url}{(url.Contains("?") ? "&" : "?")}_rev={StaticRevision.Value}";
         }
     }
 }

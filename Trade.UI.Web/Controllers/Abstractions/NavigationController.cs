@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Trade.Infra.Contract.Contexts.Application;
-using Trade.UI.Web.Core.Options;
+using Trade.UI.Web.Core.Settings;
 using Trade.UI.Web.Models.ViewModels.Shared;
 
 namespace Trade.UI.Web.Controllers.Abstractions
 {
     public abstract class NavigationController : ApplicationController
     {
-        protected NavigationController(IApplicationContext appContext, IOptions<CommonOption> optionsAccessor)
-            : base(appContext, optionsAccessor)
+        protected NavigationController(IApplicationContext appContext, IOptions<AppSettings> settings)
+            : base(appContext, settings)
         {
         }
 

@@ -20,7 +20,7 @@ namespace Trade.UI.Console
     // StartupInvoker の仕様をみるに、 $"Startup{environment}", "Startup", "Program", "App" の順番でクラスを探し、
     // 最初に見つかったクラスから、 "ConfigureServices", $"Configure{environment}Services" メソッドを探す。
     // static メソッドなら そのまま呼び出し、 そうでなければ コンストラクタで初期化してからとなる
-    // (.net Core の場合は、コンストラクタの引数で IHostingEnvironment が受け取れる)
+    // .net Core の場合は、コンストラクタの引数で IHostingEnvironment が受け取れる
     public class Program
     {
         static Program()
