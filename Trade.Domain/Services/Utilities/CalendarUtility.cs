@@ -1,5 +1,4 @@
-﻿using System;
-using Trade.Domain.ValueObjects;
+﻿using Trade.Domain.ValueObjects;
 
 namespace Trade.Domain.Services.Utilities
 {

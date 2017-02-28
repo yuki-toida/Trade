@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Trade.Domain.Services.Utilities;
-using Trade.Domain.ValueObjects;
 using Trade.Infra.Contract.Entities;
 
 namespace Trade.Domain.Entities.Volume

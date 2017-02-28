@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Trade.App.Web.Services;
-using Trade.Domain.Services.Utilities;
 using Trade.Domain.ValueObjects;
 using Trade.Infra.Contract.Contexts.Application;
 using Trade.UI.Web.Controllers.Abstractions;

@@ -15,7 +15,7 @@
         /// </summary>
         public static string GetScriptUrl(string serverUrl, string path)
         {
-            return GetBaseUrl(serverUrl, "script", path);
+            return GetBaseUrl(serverUrl, "scripts", path);
         }
 
         /// <summary>

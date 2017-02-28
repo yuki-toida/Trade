@@ -1,5 +1,4 @@
-﻿@using Trade.Domain.Services.Utilities
-@using Trade.Domain.ValueObjects
+﻿@using Trade.Domain.ValueObjects
 @model Trade.UI.Web.Models.ViewModels.Shared.CommonViewModel
 
 <!DOCTYPE html>
@@ -13,12 +12,10 @@
         <link rel="stylesheet" href="@Model.GetLibraryUrl("bootstrap/dist/css/bootstrap.css")" />
         <link rel="stylesheet" href="@Model.GetCssUrl("site.css")" />
     </environment>
-    @*<environment names="Staging,Production">
-        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    </environment>*@
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="@Model.GetLibraryUrl("bootstrap/dist/css/bootstrap.css")" />
+        <link rel="stylesheet" href="@Model.GetCssUrl("site.css")" />
+    </environment>
     @RenderSection("styles", required: false)
 </head>
 <body>
@@ -56,16 +53,10 @@
         <script src="@Model.GetLibraryUrl("jquery/dist/jquery.js")"></script>
         <script src="@Model.GetLibraryUrl("bootstrap/dist/js/bootstrap.js")"></script>
     </environment>
-    @*<environment names="Staging,Production">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
-        </script>
-    </environment>*@
+    <environment names="Staging,Production">
+        <script src="@Model.GetLibraryUrl("jquery/dist/jquery.js")"></script>
+        <script src="@Model.GetLibraryUrl("bootstrap/dist/js/bootstrap.js")"></script>
+    </environment>
     @RenderSection("scripts", required: false)
 </body>
 </html>
