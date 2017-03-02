@@ -1,3 +1,3 @@
-SET PublishPath=C:\Workspace\TradePublish\Trade.UI.Console
+SET PublishPath=%CD%\WebJobs\Scraping
 dotnet publish --output %PublishPath%
-powershell Compress-Archive -Path %PublishPath%  -DestinationPath %PublishPath%.zip -Update
+powershell Compress-Archive -Path %PublishPath% -DestinationPath %PublishPath%.zip -Update
