@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Trade.Infra.Core.Time;
 
 namespace Trade.UI.Web.Core.Static
 {
@@ -11,7 +11,7 @@ namespace Trade.UI.Web.Core.Static
 
         static StaticRevision()
         {
-            Value = DateTime.Now.ToString("MMddHHmm"); //全APで同じとなるようMMddHHmm形式
+            Value = DateTimeManager.Now.ToString("MMddHHmm"); //全APで同じとなるようMMddHHmm形式
         }
     }
 }

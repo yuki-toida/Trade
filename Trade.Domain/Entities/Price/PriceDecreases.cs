@@ -9,10 +9,10 @@ namespace Trade.Domain.Entities.Price
     public class PriceDecreases : IEnumerable<PriceDecrease>
     {
         private readonly IEnumerable<PriceDecrease> _prices;
-        private readonly DateTime _targetDate;
-        private readonly DateTime?[] _allDate;
+        private readonly DateTimeOffset _targetDate;
+        private readonly DateTimeOffset?[] _allDate;
 
-        public PriceDecreases(IEnumerable<YahooPriceDecreaseRate> prices, DateTime targetDate, DateTime?[] allDate)
+        public PriceDecreases(IEnumerable<YahooPriceDecreaseRate> prices, DateTimeOffset targetDate, DateTimeOffset?[] allDate)
         {
             _prices = prices.Select(x => new PriceDecrease(x));
             _targetDate = targetDate;
@@ -21,9 +21,9 @@ namespace Trade.Domain.Entities.Price
 
         public string TargetDate => _targetDate.ToString("yyyy-MM-dd");
 
-        public DateTime? PreviousDate => _allDate.OrderByDescending(x => x).FirstOrDefault(x => x < _targetDate);
+        public DateTimeOffset? PreviousDate => _allDate.OrderByDescending(x => x).FirstOrDefault(x => x < _targetDate);
 
-        public DateTime? NextDate => _allDate.OrderBy(x => x).FirstOrDefault(x => _targetDate < x);
+        public DateTimeOffset? NextDate => _allDate.OrderBy(x => x).FirstOrDefault(x => _targetDate < x);
 
         public IEnumerator<PriceDecrease> GetEnumerator()
         {

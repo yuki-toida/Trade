@@ -9,10 +9,10 @@ namespace Trade.Domain.Entities.Volume
     public class VolumeIncreases : IEnumerable<VolumeIncrease>
     {
         private readonly IEnumerable<VolumeIncrease> _volumes;
-        private readonly DateTime _targetDate;
-        private readonly DateTime?[] _allDate;
+        private readonly DateTimeOffset _targetDate;
+        private readonly DateTimeOffset?[] _allDate;
 
-        public VolumeIncreases(IEnumerable<YahooVolumeIncreaseRate> volumes, DateTime targetDate, DateTime?[] allDate)
+        public VolumeIncreases(IEnumerable<YahooVolumeIncreaseRate> volumes, DateTimeOffset targetDate, DateTimeOffset?[] allDate)
         {
             _volumes = volumes.Select(x => new VolumeIncrease(x));
             _targetDate = targetDate;
@@ -21,9 +21,9 @@ namespace Trade.Domain.Entities.Volume
 
         public string TargetDate => _targetDate.ToString("yyyy-MM-dd");
 
-        public DateTime? PreviousDate => _allDate.OrderByDescending(x => x).FirstOrDefault(x => x < _targetDate);
+        public DateTimeOffset? PreviousDate => _allDate.OrderByDescending(x => x).FirstOrDefault(x => x < _targetDate);
 
-        public DateTime? NextDate => _allDate.OrderBy(x => x).FirstOrDefault(x => _targetDate < x);
+        public DateTimeOffset? NextDate => _allDate.OrderBy(x => x).FirstOrDefault(x => _targetDate < x);
 
         public IEnumerator<VolumeIncrease> GetEnumerator()
         {

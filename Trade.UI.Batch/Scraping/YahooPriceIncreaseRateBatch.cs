@@ -6,6 +6,7 @@ using Trade.UI.Batch.Scraping.Abstractions;
 using System.Linq;
 using Trade.Infra.Contract.Entities;
 using Trade.Infra.Contract.Repositories;
+using Trade.Infra.Core.Time;
 
 namespace Trade.UI.Batch.Scraping
 {
@@ -29,7 +30,8 @@ namespace Trade.UI.Batch.Scraping
             var nodeItems = document.DocumentNode.SelectNodes("//tr[@class='rankingTabledata yjM']");
 
             // 最終更新日取得
-            var date = DateTime.Parse(nodeDate.InnerText.Replace("最終更新日時：", "")).Date;
+            var date = DateTimeOffset.Parse(nodeDate.InnerText.Replace("最終更新日時：", ""));
+            date = new DateTimeOffset(date.Year, date.Month, date.Day, 0, 0, 0, date.Offset);
 
             // 更新日付
             var dateEntity = _dateRepository.Find(x => x.Date == date);
@@ -39,8 +41,8 @@ namespace Trade.UI.Batch.Scraping
                 _dateRepository.Add(new YahooPriceIncreaseRateDate()
                 {
                     Date = date,
-                    AddDate = DateTime.Now,
-                    UpdtDate = DateTime.Now,
+                    AddDate = DateTimeManager.Now,
+                    UpdtDate = DateTimeManager.Now,
                 });
 
                 // 出来高情報追加
@@ -53,7 +55,7 @@ namespace Trade.UI.Batch.Scraping
             else
             {
                 // 更新時刻更新
-                dateEntity.UpdtDate = DateTime.Now;
+                dateEntity.UpdtDate = DateTimeManager.Now;
 
                 // 出来高情報更新
                 var entities = _repository.FindBy(x => x.Date == date).ToArray();
@@ -76,7 +78,7 @@ namespace Trade.UI.Batch.Scraping
         /// <summary>
         /// 追加
         /// </summary>
-        private void Add(DateTime date, HtmlNodeCollection collection)
+        private void Add(DateTimeOffset date, HtmlNodeCollection collection)
         {
             _repository.Add(new YahooPriceIncreaseRate()
             {

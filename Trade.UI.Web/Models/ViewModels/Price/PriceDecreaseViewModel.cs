@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Trade.Domain.Entities.Price;
-using Trade.Domain.Services.Utilities;
 using Trade.Domain.ValueObjects;
+using Trade.Infra.Core.Extensions;
 using Trade.UI.Web.Models.ViewModels.Shared;
 
 namespace Trade.UI.Web.Models.ViewModels.Price
@@ -10,7 +10,7 @@ namespace Trade.UI.Web.Models.ViewModels.Price
     {
         public PriceDecreaseViewModel(PriceDecreases priceDecreases)
         {
-            Title = CalendarUtility.GetTitle(CalendarEventType.PriceDecrease);
+            Title = CalendarEventType.PriceDecrease.GetValue<string>();
             EventType = CalendarEventType.PriceDecrease;
             TargetDate = priceDecreases.TargetDate;
             PreviousDate = priceDecreases.PreviousDate;

@@ -8,8 +8,8 @@ namespace Trade.UI.Web.Controllers.Abstractions
 {
     public abstract class NavigationController : ApplicationController
     {
-        protected NavigationController(IApplicationContext appContext, IOptions<AppSettings> settings)
-            : base(appContext, settings)
+        protected NavigationController(IApplicationContext appContext)
+            : base(appContext)
         {
         }
 
@@ -28,9 +28,6 @@ namespace Trade.UI.Web.Controllers.Abstractions
             model.NextUrl = model.NextDate.HasValue
                 ? Url.Action(action, controller, new { date = model.NextDate })
                 : "#";
-
-            // 静的ファイルサーバーUrlを設定します
-            SetStaticServerUrl(model);
         }
     }
 }

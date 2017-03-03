@@ -6,6 +6,7 @@ using Microsoft.Extensions.Options;
 using Trade.App.Web.Services;
 using Trade.Domain.ValueObjects;
 using Trade.Infra.Contract.Contexts.Application;
+using Trade.Infra.Core.Time;
 using Trade.UI.Web.Controllers.Abstractions;
 using Trade.UI.Web.Core.Settings;
 using Trade.UI.Web.Models.Dtos;
@@ -15,16 +16,16 @@ namespace Trade.UI.Web.Controllers
 {
     public class CalendarController : NavigationController
     {
-        public CalendarController(IApplicationContext appContext, IOptions<AppSettings> settings)
-            : base(appContext, settings)
+        public CalendarController(IApplicationContext appContext)
+            : base(appContext)
         {
         }
 
-        public async Task<IActionResult> Index(DateTime? date)
+        public async Task<IActionResult> Index(DateTimeOffset? date)
         {
             // デフォルトは現在年月
-            var now = DateTime.Now;
-            date = date ?? new DateTime(now.Year, now.Month, 1, 0, 0, 0);
+            var now = DateTimeManager.Now;
+            date = date ?? new DateTimeOffset(now.Year, now.Month, 1, 0, 0, 0, now.Offset);
 
             // 先月と来月
             var previousDate = date.Value.AddMonths(-1);
@@ -33,7 +34,7 @@ namespace Trade.UI.Web.Controllers
             var service = new CalendarService(AppContext);
 
             // カレンダーイベント取得
-            var events = await service.GetCalendarEvents(Settings.GoogleCalendarApiKey, date.Value, nextDate.AddDays(-1));
+            var events = await service.GetCalendarEvents(AppSettings.Values.GoogleCalendarApiKey, date.Value, nextDate.AddDays(-1));
             var eventDto = events.Select(x => new CalendarEventDto(x) {Url = GetEventUrl(x.Type, x.Date)});
 
             var model = new CalendarViewModel(date.Value, previousDate, nextDate, AppContext.Serializer.Serialize(eventDto));
@@ -45,7 +46,7 @@ namespace Trade.UI.Web.Controllers
         /// <summary>
         /// カレンダーイベントUrl取得
         /// </summary>
-        private string GetEventUrl(CalendarEventType type, DateTime date)
+        private string GetEventUrl(CalendarEventType type, DateTimeOffset date)
         {
             switch (type)
             {

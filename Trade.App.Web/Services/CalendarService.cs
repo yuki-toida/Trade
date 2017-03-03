@@ -6,6 +6,7 @@ using Trade.Domain.Entities.Calendar;
 using Trade.Domain.Entities.Calendar.GoogleCalendar;
 using Trade.Domain.ValueObjects;
 using Trade.Infra.Contract.Contexts.Application;
+using Trade.Infra.Core.Extensions;
 using Trade.Infra.GoogleCalendar;
 
 namespace Trade.App.Web.Services
@@ -19,7 +20,7 @@ namespace Trade.App.Web.Services
         /// <summary>
         /// カレンダーイベント取得
         /// </summary>
-        public async Task<CalendarEvent[]> GetCalendarEvents(string googleCalendarApiKey, DateTime from, DateTime to)
+        public async Task<CalendarEvent[]> GetCalendarEvents(string googleCalendarApiKey, DateTimeOffset from, DateTimeOffset to)
         {
             // 出来高増加率イベント
             var volumeIncreaseEvents = AppContext.DataContexts.YahooVolumeIncreaseRateDateRepository

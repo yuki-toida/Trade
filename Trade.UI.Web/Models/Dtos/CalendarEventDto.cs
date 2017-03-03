@@ -12,7 +12,7 @@ namespace Trade.UI.Web.Models.Dtos
         }
 
         public string Title { get; set; }
-        public DateTime Start { get; set; }
+        public DateTimeOffset Start { get; set; }
         public string Url { get; set; }
     }
 }

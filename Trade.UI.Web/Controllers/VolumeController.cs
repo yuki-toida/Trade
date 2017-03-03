@@ -11,11 +11,11 @@ namespace Trade.UI.Web.Controllers
 {
     public class VolumeController : NavigationController
     {
-        public VolumeController(IApplicationContext appContext, IOptions<AppSettings> settings) : base(appContext, settings)
+        public VolumeController(IApplicationContext appContext) : base(appContext)
         {
         }
 
-        public IActionResult Increase(DateTime? date)
+        public IActionResult Increase(DateTimeOffset? date)
         {
             var service = new VolumeService(AppContext);
             var volumeIncreases = service.GetIncreases(date);

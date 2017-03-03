@@ -9,7 +9,7 @@ namespace Trade.Infra.Contract.Entities
         /// 日付
         /// </summary>
         [Key]
-        public DateTime Date { get; set; }
+        public DateTimeOffset Date { get; set; }
 
         /// <summary>
         /// ランキング

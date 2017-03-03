@@ -1,17 +1,18 @@
 ﻿using System;
 using Trade.Domain.ValueObjects;
+using Trade.Infra.Core.Time;
 using Trade.UI.Web.Models.ViewModels.Shared;
 
 namespace Trade.UI.Web.Models.ViewModels.Calendar
 {
     public class CalendarViewModel : NavigationViewModel
     {
-        public CalendarViewModel(DateTime date, DateTime previousDate, DateTime nextDate, string events)
+        public CalendarViewModel(DateTimeOffset date, DateTimeOffset previousDate, DateTimeOffset nextDate, string events)
         {
             Title = TradeConsts.Calendar;
             TargetDate = date.ToString("yyyy-MM");
-            PreviousDate = DateTime.Now < previousDate ? (DateTime?) null : previousDate;
-            NextDate = DateTime.Now < nextDate ? (DateTime?) null : nextDate;
+            PreviousDate = DateTimeManager.Now < previousDate ? (DateTimeOffset?) null : previousDate;
+            NextDate = DateTimeManager.Now < nextDate ? (DateTimeOffset?) null : nextDate;
             DefaultDate = date.ToString("yyyy-MM-dd");
             Events = events;
         }

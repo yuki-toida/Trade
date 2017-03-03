@@ -33,10 +33,13 @@ namespace Trade.UI.Web
         public void ConfigureServices(IServiceCollection services)
         {
             // オプションパターンを有効化する、ControllersコンストラクタにDI注入 http://blog.shibayan.jp/entry/20160529/1464456800
-            services.AddOptions();
+            // AppSettingsの静的プロパティから取得するように変更
+            //services.AddOptions();
 
             // AppSettings
-            services.Configure<AppSettings>(Configuration.GetSection("Common"));
+            var staticServerUrl = Configuration["StaticServerUrl"];
+            var googleCalendarApiKey = Configuration["GoogleCalendarApiKey"];
+            AppSettings.Create(staticServerUrl, googleCalendarApiKey);
 
             // DbContext
             services.AddDbContext<TradeDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));

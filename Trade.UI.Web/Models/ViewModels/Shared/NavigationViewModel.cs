@@ -12,7 +12,7 @@ namespace Trade.UI.Web.Models.ViewModels.Shared
         /// <summary>
         /// 対象日付の一個過去日付
         /// </summary>
-        public DateTime? PreviousDate { get; set; }
+        public DateTimeOffset? PreviousDate { get; set; }
 
         /// <summary>
         /// 対象日付の一個過去日付Url
@@ -22,7 +22,7 @@ namespace Trade.UI.Web.Models.ViewModels.Shared
         /// <summary>
         /// 対象日付の一個未来日付
         /// </summary>
-        public DateTime? NextDate { get; set; }
+        public DateTimeOffset? NextDate { get; set; }
 
         /// <summary>
         /// 対象日付の一個未来日付Url

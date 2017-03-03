@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Trade.Domain.Entities.Volume;
-using Trade.Domain.Services.Utilities;
 using Trade.Domain.ValueObjects;
+using Trade.Infra.Core.Extensions;
 using Trade.UI.Web.Models.ViewModels.Shared;
 
 namespace Trade.UI.Web.Models.ViewModels.Volume
@@ -10,7 +10,7 @@ namespace Trade.UI.Web.Models.ViewModels.Volume
     {
         public VolumeIncreaseViewModel(VolumeIncreases volumeIncreases)
         {
-            Title = CalendarUtility.GetTitle(CalendarEventType.VolumeIncrease);
+            Title = CalendarEventType.VolumeIncrease.GetValue<string>();
             EventType = CalendarEventType.VolumeIncrease;
             TargetDate = volumeIncreases.TargetDate;
             PreviousDate = volumeIncreases.PreviousDate;

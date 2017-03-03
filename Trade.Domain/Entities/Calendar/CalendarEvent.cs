@@ -1,17 +1,17 @@
 ﻿using System;
-using Trade.Domain.Services.Utilities;
 using Trade.Domain.ValueObjects;
+using Trade.Infra.Core.Extensions;
 
 namespace Trade.Domain.Entities.Calendar
 {
     public class CalendarEvent
     {
-        public CalendarEvent(DateTime date, CalendarEventType type)
-            : this(date, type, CalendarUtility.GetTitle(type))
+        public CalendarEvent(DateTimeOffset date, CalendarEventType type)
+            : this(date, type, type.GetValue<string>())
         {
         }
 
-        public CalendarEvent(DateTime date, CalendarEventType type, string title)
+        public CalendarEvent(DateTimeOffset date, CalendarEventType type, string title)
         {
             Title = title;
             Date = date;
@@ -20,6 +20,6 @@ namespace Trade.Domain.Entities.Calendar
 
         public string Title { get; }
         public CalendarEventType Type { get; }
-        public DateTime Date { get; }
+        public DateTimeOffset Date { get; }
     }
 }

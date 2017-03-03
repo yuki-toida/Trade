@@ -11,11 +11,11 @@ namespace Trade.UI.Web.Controllers
 {
     public class PriceController : NavigationController
     {
-        public PriceController(IApplicationContext appContext, IOptions<AppSettings> settings) : base(appContext, settings)
+        public PriceController(IApplicationContext appContext) : base(appContext)
         {
         }
 
-        public IActionResult Increase(DateTime? date)
+        public IActionResult Increase(DateTimeOffset? date)
         {
             var service = new PriceService(AppContext);
             var priceIncreases = service.GetIncreases(date);
@@ -26,7 +26,7 @@ namespace Trade.UI.Web.Controllers
             return View(model);
         }
 
-        public IActionResult Decrease(DateTime? date)
+        public IActionResult Decrease(DateTimeOffset? date)
         {
             var service = new PriceService(AppContext);
             var priceDecreases = service.GetDecreases(date);

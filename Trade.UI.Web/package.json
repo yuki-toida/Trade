@@ -3,7 +3,7 @@
   "name": "asp.net",
   "private": true,
   "devDependencies": {
-    "gulp": "3.9.0",
+    "gulp": "3.9.1",
     "del": "2.2.0"
   },
   "dependencies": {

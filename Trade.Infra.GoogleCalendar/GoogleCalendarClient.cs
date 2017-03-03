@@ -20,7 +20,7 @@ namespace Trade.Infra.GoogleCalendar
         /// <summary>
         /// 指定期間内の祝日を取得します
         /// </summary>
-        public async Task<string> GetHolidays(DateTime from, DateTime to)
+        public async Task<string> GetHolidays(DateTimeOffset from, DateTimeOffset to)
         {
             var timeMin = from.ToString("yyyy-MM-dd") + "T00%3A00%3A00.000Z";
             var timeMax = to.ToString("yyyy-MM-dd") + "T00%3A00%3A00.000Z";

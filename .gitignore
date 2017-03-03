@@ -272,3 +272,7 @@ __pycache__/
 
 # Azure WebJosb
 /Trade.UI.Console/WebJobs
+
+# client sorce
+/Trade.UI.Web/wwwroot/lib
+/Trade.UI.Web/wwwroot/scripts

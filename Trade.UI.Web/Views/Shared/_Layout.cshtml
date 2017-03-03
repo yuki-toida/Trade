@@ -1,4 +1,7 @@
-﻿@using Trade.Domain.ValueObjects
+﻿@using System.Threading.Tasks
+@using Trade.Domain.ValueObjects
+@using Trade.Infra.Core.Extensions
+@using Trade.UI.Web.Core.Static
 @model Trade.UI.Web.Models.ViewModels.Shared.CommonViewModel
 
 <!DOCTYPE html>
@@ -9,12 +12,13 @@
     <title>@Model.Title</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="@Model.GetLibraryUrl("bootstrap/dist/css/bootstrap.css")" />
-        <link rel="stylesheet" href="@Model.GetCssUrl("site.css")" />
+        <link rel="stylesheet" href="@StaticUrl.GetLibraryUrl("bootstrap/dist/css/bootstrap.css")" />
+        <link rel="stylesheet" href="@StaticUrl.GetCssUrl("site.css")" />
+        <link rel="shortcut icon" href="@StaticUrl.GetImageUrl("favicon.ico")" />
     </environment>
     <environment names="Staging,Production">
-        <link rel="stylesheet" href="@Model.GetLibraryUrl("bootstrap/dist/css/bootstrap.css")" />
-        <link rel="stylesheet" href="@Model.GetCssUrl("site.css")" />
+        <link rel="stylesheet" href="@StaticUrl.GetLibraryUrl("bootstrap/dist/css/bootstrap.css")" />
+        <link rel="stylesheet" href="@StaticUrl.GetCssUrl("site.css")" />
     </environment>
     @RenderSection("styles", required: false)
 </head>
@@ -33,13 +37,13 @@
             <div class="navbar-collapse collapse text-center">
                 <ul class="nav navbar-nav">
                     <li class="@(Model.EventType == CalendarEventType.VolumeIncrease ? "guide" : "")">
-                        <a asp-controller="Volume" asp-action="Increase">@Model.GetNaviTitle(CalendarEventType.VolumeIncrease)</a>
+                        <a asp-controller="Volume" asp-action="Increase">@(CalendarEventType.VolumeIncrease.GetValue<string>())</a>
                     </li>
                     <li class="@(Model.EventType == CalendarEventType.PriceIncrease ? "guide" : "")">
-                        <a asp-controller="Price" asp-action="Increase">@Model.GetNaviTitle(CalendarEventType.PriceIncrease)</a>
+                        <a asp-controller="Price" asp-action="Increase">@(CalendarEventType.PriceIncrease.GetValue<string>())</a>
                     </li>
                     <li class="@(Model.EventType == CalendarEventType.PriceDecrease ? "guide" : "")">
-                        <a asp-controller="Price" asp-action="Decrease">@Model.GetNaviTitle(CalendarEventType.PriceDecrease)</a>
+                        <a asp-controller="Price" asp-action="Decrease">@(CalendarEventType.PriceDecrease.GetValue<string>())</a>
                     </li>
                 </ul>
             </div>
@@ -50,12 +54,12 @@
     </div>
 
     <environment names="Development">
-        <script src="@Model.GetLibraryUrl("jquery/dist/jquery.js")"></script>
-        <script src="@Model.GetLibraryUrl("bootstrap/dist/js/bootstrap.js")"></script>
+        <script src="@StaticUrl.GetLibraryUrl("jquery/dist/jquery.js")"></script>
+        <script src="@StaticUrl.GetLibraryUrl("bootstrap/dist/js/bootstrap.js")"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="@Model.GetLibraryUrl("jquery/dist/jquery.js")"></script>
-        <script src="@Model.GetLibraryUrl("bootstrap/dist/js/bootstrap.js")"></script>
+        <script src="@StaticUrl.GetLibraryUrl("jquery/dist/jquery.js")"></script>
+        <script src="@StaticUrl.GetLibraryUrl("bootstrap/dist/js/bootstrap.js")"></script>
     </environment>
     @RenderSection("scripts", required: false)
 </body>
