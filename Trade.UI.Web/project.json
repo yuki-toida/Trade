@@ -59,12 +59,17 @@
       "wwwroot",
       "**/*.cshtml",
       "appsettings.json",
-      "web.config"
+      "web.config",
+      "App_Data/jobs/**"
     ]
   },
 
   "scripts": {
     "prepublish": [ "npm install", "bower install" ],
-    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+    "postpublish": [
+      "dotnet build ../Trade.UI.Console/ --configuration Debug --no-dependencies --no-incremental",
+      "dotnet publish ../Trade.UI.Console/ -o %publish:OutputPath%/App_Data/jobs/triggered/Scraping/",
+      "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%"
+    ]
   }
 }

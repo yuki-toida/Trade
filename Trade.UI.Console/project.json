@@ -33,7 +33,8 @@
   "publishOptions": {
     "include": [
       "appsettings.json",
-      "run.cmd"
+      "run.cmd",
+      "settings.job"
     ]
   }
 }
