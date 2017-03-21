@@ -1,29 +1,29 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.UI.Console", "Trade.UI.Console\Trade.UI.Console.xproj", "{24522ACD-2D97-40E5-9A3E-A42B1750BA14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.UI.Console", "Trade.UI.Console\Trade.UI.Console.csproj", "{24522ACD-2D97-40E5-9A3E-A42B1750BA14}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.UI.Batch", "Trade.UI.Batch\Trade.UI.Batch.xproj", "{17FE6B66-B332-4C71-8B1D-299802C6B0C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.UI.Batch", "Trade.UI.Batch\Trade.UI.Batch.csproj", "{17FE6B66-B332-4C71-8B1D-299802C6B0C7}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.UI.Web", "Trade.UI.Web\Trade.UI.Web.xproj", "{41708CA4-D1DF-4ACB-A975-6002D8BB3FDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.UI.Web", "Trade.UI.Web\Trade.UI.Web.csproj", "{41708CA4-D1DF-4ACB-A975-6002D8BB3FDE}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.Infra.Contract", "Trade.Infra.Contract\Trade.Infra.Contract.xproj", "{B59A741F-8A00-4FAD-B199-434A7CC2927E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.Infra.Contract", "Trade.Infra.Contract\Trade.Infra.Contract.csproj", "{B59A741F-8A00-4FAD-B199-434A7CC2927E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.Infra.EF", "Trade.Infra.EF\Trade.Infra.EF.xproj", "{8EA2D180-1773-4082-A06E-7E076A7ABDDB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.Infra.EF", "Trade.Infra.EF\Trade.Infra.EF.csproj", "{8EA2D180-1773-4082-A06E-7E076A7ABDDB}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.App.Web", "Trade.App.Web\Trade.App.Web.xproj", "{7C21C46C-0474-4315-BAB4-D3455C9C9D34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.App.Web", "Trade.App.Web\Trade.App.Web.csproj", "{7C21C46C-0474-4315-BAB4-D3455C9C9D34}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.Infra.JsonNet", "Trade.Infra.JsonNet\Trade.Infra.JsonNet.xproj", "{6A965604-DABF-40FE-83FD-0AE12ACAC273}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.Infra.JsonNet", "Trade.Infra.JsonNet\Trade.Infra.JsonNet.csproj", "{6A965604-DABF-40FE-83FD-0AE12ACAC273}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.Domain", "Trade.Domain\Trade.Domain.xproj", "{86538CF0-0285-4C74-A759-2CECEB922558}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.Domain", "Trade.Domain\Trade.Domain.csproj", "{86538CF0-0285-4C74-A759-2CECEB922558}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.Infra.Core", "Trade.Infra.Core\Trade.Infra.Core.xproj", "{B9FE58BA-AD05-4957-A0E1-A14BA2D599E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.Infra.Core", "Trade.Infra.Core\Trade.Infra.Core.csproj", "{B9FE58BA-AD05-4957-A0E1-A14BA2D599E1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.Infra.GoogleCalendar", "Trade.Infra.GoogleCalendar\Trade.Infra.GoogleCalendar.xproj", "{3A9B65B1-B3A4-4089-B4F4-69C5DE73B7B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.Infra.GoogleCalendar", "Trade.Infra.GoogleCalendar\Trade.Infra.GoogleCalendar.csproj", "{3A9B65B1-B3A4-4089-B4F4-69C5DE73B7B1}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Trade.UI.Web.Core", "Trade.UI.Web.Core\Trade.UI.Web.Core.xproj", "{3450546C-06B0-4B26-B54F-CBEF246D6F07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trade.UI.Web.Core", "Trade.UI.Web.Core\Trade.UI.Web.Core.csproj", "{3450546C-06B0-4B26-B54F-CBEF246D6F07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
