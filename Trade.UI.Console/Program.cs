@@ -28,7 +28,7 @@ namespace Trade.UI.Console
             // Shift-JIS対応
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            ConfigurationStrings = new Dictionary<string, string>()
+            Arguments = new Dictionary<string, string>()
             {
                 {"assembly", "Trade.UI.Batch"},
                 {"class", "Trade.UI.Batch.Scraping.YahooPriceDecreaseRateBatch"},
@@ -39,7 +39,7 @@ namespace Trade.UI.Console
         /// <summary>
         /// コマンドライン引数をメモリに格納するための値
         /// </summary>
-        private static IReadOnlyDictionary<string, string> ConfigurationStrings { get; }
+        private static IReadOnlyDictionary<string, string> Arguments { get; }
 
         /// <summary>
         /// コンフィグ
@@ -112,7 +112,7 @@ namespace Trade.UI.Console
 
             builder.SetBasePath(Directory.GetCurrentDirectory());
             builder.AddJsonFile("appsettings.json");
-            builder.AddInMemoryCollection(ConfigurationStrings);
+            builder.AddInMemoryCollection(Arguments);
             builder.AddCommandLine(args);
 
             return builder.Build();
